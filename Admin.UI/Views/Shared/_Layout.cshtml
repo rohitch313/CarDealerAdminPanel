@@ -1,0 +1,97 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Admin.UI</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Admin.UI.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+
+    <script>
+
+    </script>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+                <a class="navbar-brand">Admin Dealer</a>
+
+                @if (!User.Identity.IsAuthenticated)
+                {
+                    <a class="navbar-brand ms-auto" asp-area="" asp-controller="Home" asp-action="LoginIndex">Admin Login</a>
+                }
+
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse">
+                        <ul class="navbar-nav flex-grow-1">
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="UserInfo" asp-action="UserInfoIndex">UserInfo</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="State" asp-action="StateIndex">State</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Car" asp-action="CarIndex">Car</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="CustomerSupport" asp-action="CustomerIndex">CustomerSupport</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <!-- Add 'dropdown' class to create a dropdown item -->
+                                <a class="nav-link text-dark dropdown-toggle" href="#" id="carDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Purchase Vehicle
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="carDropdown">
+                                    <a class="dropdown-item" asp-area="" asp-controller="PvaAggregator" asp-action="AggregatorIndex">Aggregator</a>
+                                    <a class="dropdown-item" asp-area="" asp-controller="PvaNewCarMarket" asp-action="NewCarIndex">NewCar</a>
+                                    <a class="dropdown-item" asp-area="" asp-controller="PvaOpenMarket" asp-action="OpenMarketIndex">Open Market</a>
+                                    <a class="dropdown-item" asp-area="" asp-controller="Model" asp-action="ModelIndex">Model</a>
+                                    <a class="dropdown-item" asp-area="" asp-controller="Make" asp-action="MakeIndex">Make</a>
+                                    <a class="dropdown-item" asp-area="" asp-controller="Variant" asp-action="VariantIndex">Variants</a>
+                                    <a class="dropdown-item" asp-area="" asp-controller="YearOfReg" asp-action="YearIndex">Year</a>
+
+                                    <!-- Add more dropdown items as needed -->
+                                </div>
+                            </li>
+
+                        </ul>
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" href="#">Hello @User.Identity.Name</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Logout">LogOut</a>
+                            </li>
+                        </ul>
+                    </div>
+                }
+            </div>
+        </nav>
+
+
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2023 - Admin.UI - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

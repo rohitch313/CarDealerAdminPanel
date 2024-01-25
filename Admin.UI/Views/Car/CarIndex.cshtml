@@ -1,0 +1,81 @@
+﻿@model IEnumerable<CarDto>
+
+@using Newtonsoft.Json
+
+<div class="card shadow border-0 mt-4">
+    <div class="card-header bg-secondary bg-gradient ml-0 py-3">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h1 class="text-white">Car List <h6 class="text-primary">(Total Car = @ViewBag.StatesCount)</h6></h1>
+
+            </div>
+        </div>
+    </div>
+    <div class="card-body p-4">
+        <div class="row pb-6">
+
+            <div class="col-6">
+            </div>
+            <div class="col-6 text-end">
+                <a asp-action="CarCreate" class="btn btn-outline-primary"><i class="bi bi-plus-square"></i> Create New Car</a>
+
+            </div>
+
+        </div>
+
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Car Id
+                    </th>
+                    <th>
+                        Car Name
+                    </th>
+                    <th>
+                        Car Variant
+                    </th>
+                    <th>
+                        User Id
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.CarId</td>
+                        <td>@item.CarName</td>
+                        <td>@item.Variant</td>
+                        <td>
+                            @foreach (var state in ViewBag.States)
+                            {
+                                if (item.UserId == state.Id)
+                                {
+                                    @state.UserName
+                                }
+                            }
+                        </td>
+
+                        <td>
+                            <a asp-action="CarToUpdate" asp-route-Carid="@item.CarId" class="btn btn-primary">
+
+                                <i class="bi bi-pencil"></i>
+                            </a>
+                            <a asp-action="CarDelete" asp-route-carId="@item.CarId" class="btn btn-danger">
+                                <i class="bi bi-trash"></i>
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+@section Scripts
+{
+
+    <partial name="_ValidationScriptsPartial" />
+}

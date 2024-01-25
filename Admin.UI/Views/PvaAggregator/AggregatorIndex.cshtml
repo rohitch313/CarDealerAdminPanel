@@ -1,0 +1,110 @@
+﻿@model IEnumerable<PvAggregatorsDto>
+@using Newtonsoft.Json
+
+
+<div class="card shadow border-0 mt-4">
+    <div class="card-header bg-secondary bg-gradient ml-0 py-3">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h1 class="text-white">Aggregator List</h1>
+            </div>
+        </div>
+    </div>
+    <div class="card-body p-4">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Aggregator Id
+                    </th>
+                    <th>
+                        PurchaseAmount
+                    </th>
+                    <th>
+                        Make Name
+                    </th>
+                    <th>
+                        Model Name
+                    </th>
+                    <th>
+                        Variant
+                    </th>
+                    <th>
+                        Year
+                    </th>
+                    <th>
+                        User Name
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+
+                        <td>@item.Id</td>
+                        <td>@item.PurchaseAmount</td>
+                        <td>
+                            @foreach (var make in ViewBag.Makes)
+                            {
+                                if (item.MakeId == make.MakeId)
+                                {
+                                    @make.MakeName
+                                }
+                            }
+                        </td>
+                        <td>
+                            @foreach (var models in ViewBag.Models)
+                            {
+                                if (item.ModelId == models.ModelId)
+                                {
+                                    @models.ModelName
+                                }
+                            }
+                        </td>
+                        <td>
+                            @foreach (var variants in ViewBag.Variants)
+                            {
+                                if (item.VariantId == variants.VariantId)
+                                {
+                                    @variants.VariantName
+                                }
+                            }
+                        </td>
+                        <td>
+                            @foreach (var years in ViewBag.Years)
+                            {
+                                if (item.YearOfRegistration == years.YearId)
+                                {
+                                    @years.YearCode
+                                }
+                            }
+                        </td>
+                        <td>
+                            @foreach (var users in ViewBag.Users)
+                            {
+                                if (item.UserInfoId == users.Id)
+                                {
+                                    @users.UserName
+                                }
+                            }
+                        </td>
+                        <td>
+
+                            <a asp-action="AggregatorDelete" asp-route-stateid="@item.Id" class="btn btn-danger">
+                                <i class="bi bi-trash"></i>
+                            </a>
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+@section Scripts
+{
+
+    <partial name="_ValidationScriptsPartial" />
+}

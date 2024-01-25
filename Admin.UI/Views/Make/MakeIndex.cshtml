@@ -1,0 +1,61 @@
+﻿@model IEnumerable<PvaMakeDto>
+@using Newtonsoft.Json
+
+
+<div class="card shadow border-0 mt-4">
+    <div class="card-header bg-secondary bg-gradient ml-0 py-3">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h1 class="text-white">Make List</h1>
+            </div>
+        </div>
+    </div>
+    <div class="card-body p-4">
+        <div class="row pb-3">
+            <div class="col-6">
+            </div>
+            <div class="col-6 text-end">
+                <a asp-action="MakeCreate" class="btn btn-outline-primary"><i class="bi bi-plus-square"></i> Create New Make</a>
+            </div>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Make Id
+                    </th>
+                    <th>
+                        Make Name
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+
+                        <td>@item.MakeId</td>
+                        <td>@item.MakeName</td>
+                       
+                        <td>
+
+                            <a asp-action="MakeToUpdate" asp-route-stateid="@item.MakeId" class="btn btn-primary">
+                                <i class="bi bi-pencil"></i>
+                            </a>
+                            <a asp-action="MakeDelete" asp-route-stateid="@item.MakeId" class="btn btn-danger">
+                                <i class="bi bi-trash"></i>
+                            </a>
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+@section Scripts
+{
+
+    <partial name="_ValidationScriptsPartial" />
+}

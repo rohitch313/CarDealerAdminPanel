@@ -1,0 +1,6 @@
+@Admin.Services.Purchase.Apply_HostAddress = http://localhost:5283
+
+GET {{Admin.Services.Purchase.Apply_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

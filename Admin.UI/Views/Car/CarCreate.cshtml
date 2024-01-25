@@ -1,0 +1,57 @@
+﻿@model CarDto
+
+<form asp-action="CarCreate">
+    <br />
+    <div class="container border p-3">
+        <h1 class="text-white text-center">Create Car</h1>
+
+        <hr />
+        <div class="row">
+            <div class="col-2">
+                <label class="control-label pt-2" style="font-size:20px;">Car Id</label>
+            </div>
+            <div class="col-10 pb-3">
+                <input asp-for="CarId" class="form-control" />
+                <span asp-validation-for="CarId" class="text-danger"></span>
+            </div>
+            <div class="col-2">
+                <label class="control-label pt-2" style="font-size:20px;">Car Name</label>
+            </div>
+            <div class="col-10 pb-3">
+                <input asp-for="CarName" class="form-control" />
+                <span asp-validation-for="CarName" class="text-danger"></span>
+            </div>
+            <div class="col-2">
+                <label class="control-label pt-2" style="font-size:20px;">Variant</label>
+            </div>
+            <div class="col-10 pb-3">
+                <input asp-for="Variant" class="form-control" />
+                <span asp-validation-for="Variant" class="text-danger"></span>
+            </div>
+            <div class="col-2">
+                <label class="control-label pt-2" style="font-size:20px;">UserName</label>
+            </div>
+            <div class="col-10 pb-3">
+                @Html.DropDownListFor(model => model.UserId, ViewBag.UsersDropdown as SelectList,"Select User", new { @class = "form-control" })                <span asp-validation-for="UserId" class="text-danger"></span>
+            </div>
+            <div class="col-5 offset-2">
+
+                <a asp-action="CarIndex" class="btn-primary btn form-control ">Back to List</a>
+            </div>
+            <div class="col-5">
+                <input type="submit" value="Create" class="btn btn-success form-control" />
+
+            </div>
+
+        </div>
+
+        <div>
+        </div>
+    </div>
+</form>
+
+@section Scripts
+{
+       
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,47 @@
+﻿@model AdminDto;
+@{
+    ViewData["Title"] = "Login Page";
+}
+<form asp-action="AdminLogin">
+    <br />
+    <div class="container border p-3">
+        <h1 class="text-white text-center">Admin Login</h1>
+
+        <hr />
+        <div class="row">
+            <div class="col-2">
+                <label class="control-label pt-2" style="font-size:20px;">Admin Name</label>
+            </div>
+            <div class="col-10 pb-3">
+                <input asp-for="UserName" class="form-control" />
+                <span asp-validation-for="UserName" class="text-danger"></span>
+            </div>
+            <div class="col-2">
+                <label class="control-label pt-2" style="font-size:20px;">Admin Password</label>
+            </div>
+            <div class="col-10 pb-3">
+                <input asp-for="Password" class="form-control" type="password" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+
+            <div class="col-5 offset-2">
+
+                <a asp-controller="Home" asp-action="Index" class="btn-primary btn form-control ">Registration</a>
+            </div>
+            <div class="col-5">
+                <input type="submit" value="Login" class="btn btn-success form-control" />
+
+            </div>
+
+        </div>
+
+        <div>
+        </div>
+    </div>
+</form>
+
+
+@section Scripts
+{
+    <partial name="_ValidationScriptsPartial" />
+}

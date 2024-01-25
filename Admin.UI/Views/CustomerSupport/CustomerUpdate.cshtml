@@ -1,0 +1,52 @@
+﻿@model CustomerSupportDto
+
+<form asp-action="CustomerUpdate" method="post">
+    <br />
+    <div class="container border p-3">
+        <h1 class="text-white text-center">Update Customer Supports Details</h1>
+
+        <hr />
+        <div class="row">
+            <div class="col-2">
+                <label class="control-label pt-2" style="font-size:20px;">Id</label>
+            </div>
+            <div class="col-10 pb-3">
+                <input asp-for="Id" readonly class="form-control" />
+            </div>
+            <div class="col-2">
+                <label class="control-label pt-2" style="font-size:20px;">WhatsApp</label>
+            </div>
+            <div class="col-10 pb-3">
+                <input asp-for="WhatsApp" class="form-control" />
+                <span asp-validation-for="WhatsApp" class="text-danger"></span>
+            </div>
+            <div class="col-2">
+                <label class="control-label pt-2" style="font-size:20px;">Email</label>
+            </div>
+            <div class="col-10 pb-3">
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="col-2">
+                <label class="control-label pt-2" style="font-size:20px;">Phone</label>
+            </div>
+            <div class="col-10 pb-3">
+                <input asp-for="Call" class="form-control" />
+                <span asp-validation-for="Call" class="text-danger"></span>
+            </div>
+
+
+            <div class="col-5 offset-2">
+                <a asp-action="CustomerIndex" class="btn-primary btn form-control ">Back to List</a>
+            </div>
+            <div class="col-5">
+                <input type="submit" value="Update" class="btn btn-warning form-control" />
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts
+{
+    <partial name="_ValidationScriptsPartial" />
+}

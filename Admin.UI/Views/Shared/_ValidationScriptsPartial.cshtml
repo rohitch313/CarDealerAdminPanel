@@ -1,0 +1,48 @@
+﻿<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // Show success toast message
+        if ("@TempData["successMessage"]" !== "") {
+            showToast("alert-success", "@TempData["successMessage"]");
+        }
+        if ("@TempData["UpdateCar"]" !== "") {
+            showToast("alert-success", "@TempData["UpdateCar"]");
+        }
+        if ("@TempData["AdminLoginMessage"]" !== "") {
+            showToast("alert-success", "@TempData["AdminLoginMessage"]");
+        }
+        if ("@TempData["CarCreateMessage"]" !== "") {
+            showToast("alert-success", "@TempData["CarCreateMessage"]");
+        }
+        // Show error toast message
+        if ("@TempData["dangerMessage"]" !== "") {
+            showToast("alert-danger", "@TempData["dangerMessage"]");
+        }
+
+        // Show Server Issue toast message
+        if ("@TempData["ServerMessage"]" !== "") {
+            showToast("alert-warning", "@TempData["ServerMessage"]");
+        }
+
+        //when Visit New Page
+        if ("@TempData["NewPageMessage"]" !== "") {
+            showToast("alert-Info", "@TempData["NewPageMessage"]");
+        }
+    });
+
+    function showToast(className, message) {
+        var toast = $('<div class="alert ' + className + ' alert-dismissible fade show position-absolute top-0 end-0" role="alert">' +
+            '<strong>Message!</strong> ' + message +
+            '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>' +
+            '</div>');
+
+        // Append the toast to the body
+        $('body').append(toast);
+
+        // Automatically close the toast after 5 seconds (5000 milliseconds)
+        setTimeout(function () {
+            toast.toast('hide');
+        }, 5000);
+    }
+</script>

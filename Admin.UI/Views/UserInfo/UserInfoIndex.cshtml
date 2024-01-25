@@ -1,0 +1,100 @@
+﻿@model IEnumerable<UserInfoDto>
+
+@using Newtonsoft.Json
+
+<div class="card shadow border-0 mt-4">
+    <div class="card-header bg-secondary bg-gradient ml-0 py-3">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h1 class="text-white">User List</h1>
+            </div>
+        </div>
+    </div>
+    <div class="card-body p-4">
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        User Id
+                    </th>
+                    <th>
+                        User Name
+                    </th>
+                    <th>
+                        User Email
+                    </th>
+                    <th>
+                        User State
+                    </th>
+                    <th>
+                        User Phone
+                    </th>
+                    <th>
+                        Active
+                        </
+                    </th>
+                    <th>
+                        Rejected
+                        </
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>@item.UserName</td>
+                        <td>@item.UserEmail</td>
+                        <td>
+                            @foreach (var state in ViewBag.States)
+                            {
+                                if (item.Sid == state.StateId)
+                                {
+                                    @state.StateName
+                                }
+                            }
+                        </td>
+                        <td>@item.Phone</td>
+                        <td>
+                            @if (item.Active)
+                            {
+                                <span>Activated</span>
+                            }
+                            else
+                            {
+                                <span>Deactivated</span>
+                            }
+                        </td>
+                        <td>
+                            @if (item.Rejected)
+                            {
+                                <span>Rejected</span>
+                            }
+                            else
+                            {
+                                <span>Not Rejected</span>
+                            }
+                        </td>
+
+                        <td>
+                            <a asp-action="UserToUpdate" asp-route-userid="@item.Id" class="btn btn-primary">
+                                <i class="bi bi-pencil"></i>
+                            </a>
+                            <a asp-action="UserInfoDelete" asp-route-userid="@item.Id" class="btn btn-danger">
+                                <i class="bi bi-trash"></i>
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+@section Scripts
+{
+
+    <partial name="_ValidationScriptsPartial" />
+}

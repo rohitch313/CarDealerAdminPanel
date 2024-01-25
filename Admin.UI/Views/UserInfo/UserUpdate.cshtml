@@ -1,0 +1,91 @@
+﻿@model UserInfoDto;
+<style>
+  
+    .custom-checkbox {
+        width: 24px;
+        height: 24px;
+       
+    }
+
+   
+    .custom-checkbox:checked {
+        background-color: green;
+    }
+</style>
+<form asp-action="UserUpdate" method="post">
+    <br />
+    <div class="container border p-3">
+        <h1 class="text-white text-center">Update UserInfo</h1>
+
+        <hr />
+        <div class="row">
+            <div class="col-2">
+                <label class="control-label pt-2" style="font-size:20px;">User Id</label>
+            </div>
+            <div class="col-10 pb-3">
+                <input asp-for="Id" readonly class="form-control" />
+            </div>
+            <div class="col-2">
+                <label class="control-label pt-2" style="font-size:20px;">User Name</label>
+            </div>
+            <div class="col-10 pb-3">
+                <input asp-for="UserName" class="form-control" />
+                <span asp-validation-for="UserName" class="text-danger"></span>
+            </div>
+            <div class="col-2">
+                <label class="control-label pt-2" style="font-size:20px;">User Email</label>
+            </div>
+            <div class="col-10 pb-3">
+                <input asp-for="UserEmail" class="form-control" />
+                <span asp-validation-for="UserEmail" class="text-danger"></span>
+            </div>
+            <div class="col-2">
+                <label class="control-label pt-2" style="font-size:20px;">User State</label>
+            </div>
+            <div class="col-10 pb-3">
+                @Html.DropDownListFor(model => model.Sid, ViewBag.UsersDropdown as SelectList, new { @class = "form-control" })
+                <span asp-validation-for="Sid" class="text-danger"></span>
+            </div>
+
+
+            <div class="col-2">
+                <label class="control-label pt-2" style="font-size:20px;">User Phone</label>
+            </div>
+            <div class="col-10 pb-3">
+                <input asp-for="Phone" class="form-control" />
+                <span asp-validation-for="Phone" class="text-danger"></span>
+            </div>
+
+
+            <div class="col-2">
+                <label class="control-label pt-2" style="font-size:20px;">Active</label>
+            </div>
+            <div class="col-10 pb-3">
+                <input asp-for="Active" id="Active" type="checkbox" class="form-check-input custom-checkbox" />
+            </div>
+            <div class="col-2">
+                <label class="control-label pt-2" style="font-size:20px;">Rejected</label>
+            </div>
+            <div class="col-10 pb-3">
+                <input asp-for="Rejected" id="Rejected" type="checkbox" class="form-check-input custom-checkbox" />
+            </div>
+
+
+
+
+            <div class="col-5 offset-2">
+                <a asp-action="UserInfoIndex" class="btn-primary btn form-control ">Back to List</a>
+            </div>
+            <div class="col-5">
+                <input type="submit" value="Update" class="btn btn-warning form-control" />
+            </div>
+        </div>
+        <div></div>
+    </div>
+</form>
+
+
+@section Scripts
+{
+    <partial name="_ValidationScriptsPartial" />
+}

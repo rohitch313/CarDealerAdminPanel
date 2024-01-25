@@ -1,0 +1,75 @@
+﻿@model IEnumerable<PvOpenMarketsDto>
+@using Newtonsoft.Json
+
+
+<div class="card shadow border-0 mt-4">
+    <div class="card-header bg-secondary bg-gradient ml-0 py-3">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h1 class="text-white">Open Market List</h1>
+            </div>
+        </div>
+    </div>
+    <div class="card-body p-4">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        OpenMarket Id
+                    </th>
+                    <th>
+                        PurchaseAmount
+                    </th>
+
+                    <th>
+                        TokenAmount
+                    </th>
+                    <th>
+                        WithholdAmount
+                    </th>
+                    <th>
+                        Seller Contact Number
+                    </th>
+                    <th>
+                        Seller Email Address
+                    </th>
+                    <th>
+                        Vehicle Number
+                    </th>
+                    <th>
+                        User Name
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+
+                        <td>@item.Id</td>
+                        <td>@item.PurchaseAmount</td>
+                        <td>@item.TokenAmount</td>
+                        <td>@item.WithholdAmount</td>
+                        <td>@item.SellerContactNumber</td>
+                        <td>@item.SellerEmailAddress</td>
+                        <td>@item.VehicleNumber</td>
+                        <td>@item.UserInfoId</td>
+                        <td>
+
+                            <a asp-action="OpenMarketDelete" asp-route-stateid="@item.Id" class="btn btn-danger">
+                                <i class="bi bi-trash"></i>
+                            </a>
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+@section Scripts
+{
+
+    <partial name="_ValidationScriptsPartial" />
+}
